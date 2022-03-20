@@ -8,3 +8,5 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ## This uses MUI
 https://mui.com/getting-started/installation/
 
+## Deploying
+https://github.com/gitname/react-gh-pages
