@@ -10,7 +10,7 @@
 
 
 # production, is wanted to be in the source for deploying purposes
-#/build
+/build
 
 # misc
 .DS_Store
