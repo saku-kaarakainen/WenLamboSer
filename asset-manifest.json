@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/WenLamboSerGitHubPages/static/css/main.073c9b0a.css",
-    "main.js": "/WenLamboSerGitHubPages/static/js/main.bac3fcdf.js",
-    "static/js/787.c48606ae.chunk.js": "/WenLamboSerGitHubPages/static/js/787.c48606ae.chunk.js",
-    "index.html": "/WenLamboSerGitHubPages/index.html",
-    "main.073c9b0a.css.map": "/WenLamboSerGitHubPages/static/css/main.073c9b0a.css.map",
-    "main.bac3fcdf.js.map": "/WenLamboSerGitHubPages/static/js/main.bac3fcdf.js.map",
-    "787.c48606ae.chunk.js.map": "/WenLamboSerGitHubPages/static/js/787.c48606ae.chunk.js.map"
+    "main.css": "/WenLamboSer/static/css/main.073c9b0a.css",
+    "main.js": "/WenLamboSer/static/js/main.f7a6f661.js",
+    "static/js/787.c3beaad5.chunk.js": "/WenLamboSer/static/js/787.c3beaad5.chunk.js",
+    "index.html": "/WenLamboSer/index.html",
+    "main.073c9b0a.css.map": "/WenLamboSer/static/css/main.073c9b0a.css.map",
+    "main.f7a6f661.js.map": "/WenLamboSer/static/js/main.f7a6f661.js.map",
+    "787.c3beaad5.chunk.js.map": "/WenLamboSer/static/js/787.c3beaad5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.bac3fcdf.js"
+    "static/js/main.f7a6f661.js"
   ]
 }
