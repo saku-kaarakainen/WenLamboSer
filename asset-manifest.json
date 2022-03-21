@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/WenLamboSer/static/css/main.abd64e84.css",
-    "main.js": "/WenLamboSer/static/js/main.8806628c.js",
+    "main.js": "/WenLamboSer/static/js/main.e1a48300.js",
     "static/js/787.c3beaad5.chunk.js": "/WenLamboSer/static/js/787.c3beaad5.chunk.js",
     "index.html": "/WenLamboSer/index.html",
     "main.abd64e84.css.map": "/WenLamboSer/static/css/main.abd64e84.css.map",
-    "main.8806628c.js.map": "/WenLamboSer/static/js/main.8806628c.js.map",
+    "main.e1a48300.js.map": "/WenLamboSer/static/js/main.e1a48300.js.map",
     "787.c3beaad5.chunk.js.map": "/WenLamboSer/static/js/787.c3beaad5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.abd64e84.css",
-    "static/js/main.8806628c.js"
+    "static/js/main.e1a48300.js"
   ]
 }
