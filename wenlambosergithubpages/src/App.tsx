@@ -2,16 +2,15 @@ import React, { Component } from 'react';
 import NavBar from './components/NavBar'
 import CourseList from './components/CourseList'
 import './App.css';
+import { BrowserRouter } from 'react-router-dom';
 
-class App extends Component {
+export default class App extends Component {
     render() {
         return (
-            <div>
+            <BrowserRouter>
                 <NavBar />
                 <CourseList />
-            </div>
+            </BrowserRouter>
         );
     }
 }
-
-export default App;
