@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 export default class App extends Component {
     render() {
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <NavBar />
                 <CourseList />
             </BrowserRouter>

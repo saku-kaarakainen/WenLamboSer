@@ -1,7 +1,7 @@
 {
-  "name": "wenlambosergit",
+  "name": "wenlambosergithubpages",
   "version": "0.0.1",
-  "homepage": "https://saku-kaarakainen.github.io/WenLamboSer/",
+  "homepage": "https://saku-kaarakainen.github.io/WenLamboSerGitHubPages/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.2",
