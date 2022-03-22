@@ -1,45 +1,30 @@
-import React, { Component } from 'react';
-import image from '../Ropsten.png'
+import React, { Component, useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { Button } from '@material-ui/core';
 
+export default function isDesiredNetwork() {
+    const [image, setImage] = useState<string>('')
+    const [clicked, setClicked] = useState<boolean>(true)
+    const [description, setDescription] = useState<string>('')
 
-export default class isDesiredNetwork extends Component {
-
-    constructor(props: any) {
-        super(props)
-        this.state = {
-            image: '',
-            clicked: true,
-            description: ''
+    useEffect(() => {
+        if (clicked) {
+            setDescription('Go to the network\'s dropdown and Select Ropsten network')
+        } else {
+            setImage('')
+            setDescription('')
         }
-        this.handleClick = this.handleClick.bind(this)
-    }
+    })
 
-    handleClick(e) {
-        e.preventDefault();
-        this.setState({ clicked: !this.state.clicked })
-        if (this.state.clicked) {
-            this.state.description = 'Go to the network\'s dropdown and Select Ropsten network'
-        }
-        else {
-            this.state.image = ''
-            this.state.description = ''
-        }
+    return (
+        <div>
+            <Button onClick={(e) => setClicked(!clicked)}> Connect To Ropsten Network</Button>
 
+            <br />
+            {image}
 
-    }
-
-    render() {
-        return (
-            <div>
-                <Button onClick={(e) => this.handleClick(e)}> Connect To Ropsten Network</Button>
-                <br />
-                {this.state.image}
-                <br />
-                {this.state.description}
-            </div>
-
-        )
-    }
+            <br />
+            {description}
+        </div>)
 }
+
