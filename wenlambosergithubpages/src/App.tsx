@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 export default function App() {
+    // TODO: Theme Toggle - theme
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const theme = React.useMemo(() => createTheme({
         palette: {
@@ -15,7 +16,6 @@ export default function App() {
         },
 
     }), [prefersDarkMode]);
-
 
     return (
         <React.StrictMode>
