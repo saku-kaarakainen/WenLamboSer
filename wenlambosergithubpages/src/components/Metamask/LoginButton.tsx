@@ -47,10 +47,12 @@ async function checkIfWalletIsConnected(onConnected: (address: string) => void) 
 }
 
 function onAddressChanged(address: string) {
-    window.ethereum.on("chainChanged", (accounts: any) => {
-        console.log("chainChanged, accounts:")
-        console.log(accounts)        
-    })
+    if (window.ethereum) {
+        window.ethereum.on("chainChanged", (accounts: any) => {
+            console.log("chainChanged, accounts:")
+            console.log(accounts)
+        })
+    }
 }
 
 export default function LoginButton() {
