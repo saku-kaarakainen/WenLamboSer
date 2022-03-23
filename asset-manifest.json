@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/WenLamboSerGitHubPages/static/css/main.373296a1.css",
-    "main.js": "/WenLamboSerGitHubPages/static/js/main.1989c2cb.js",
+    "main.js": "/WenLamboSerGitHubPages/static/js/main.663f5cfd.js",
     "static/js/787.c48606ae.chunk.js": "/WenLamboSerGitHubPages/static/js/787.c48606ae.chunk.js",
+    "static/media/Icon.svg": "/WenLamboSerGitHubPages/static/media/Icon.19f871d0b33f431e5a10bc59717743d3.svg",
     "index.html": "/WenLamboSerGitHubPages/index.html",
     "main.373296a1.css.map": "/WenLamboSerGitHubPages/static/css/main.373296a1.css.map",
-    "main.1989c2cb.js.map": "/WenLamboSerGitHubPages/static/js/main.1989c2cb.js.map",
+    "main.663f5cfd.js.map": "/WenLamboSerGitHubPages/static/js/main.663f5cfd.js.map",
     "787.c48606ae.chunk.js.map": "/WenLamboSerGitHubPages/static/js/787.c48606ae.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.373296a1.css",
-    "static/js/main.1989c2cb.js"
+    "static/js/main.663f5cfd.js"
   ]
 }
