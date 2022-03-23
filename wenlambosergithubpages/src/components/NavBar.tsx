@@ -1,27 +1,25 @@
 import React from 'react';
+import * as Colors from '@material-ui/styles/'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import LoginButton from './Metamask/LoginButton'
-import styled from "styled-components";
 
-// https://github.com/Iamhafsah/amazon-page/blob/main/src/App.tsx
-const StyledNavBar = styled.div`
-`
+const PageTitle = 'Wen Lambo? Ser!?'
 
 const NavBar = () => {
     return (
-        <StyledNavBar>
-            <AppBar position="static">
+        <div>
+            <AppBar position="static" title={PageTitle} color="transparent">
                 <Toolbar>
-                    <Typography color="inherit">
-                        Wen Lambo? Ser!?
-                    </Typography>
+                    <h1 style={{marginRight:'1rem'}}>
+                        {PageTitle}
+                    </h1>
 
                     <LoginButton />
                 </Toolbar>
             </AppBar>
-        </StyledNavBar>
+        </div>
     )
 }
 export default NavBar

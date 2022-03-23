@@ -10,3 +10,7 @@ https://mui.com/getting-started/installation/
 
 ## Deploying
 https://github.com/gitname/react-gh-pages
+
+
+# Conventions / Design rules / Notes / etc
+ - use CSS modules, works better with plugins over styled componets
