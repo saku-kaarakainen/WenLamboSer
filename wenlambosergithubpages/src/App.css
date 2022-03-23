@@ -1,3 +1,23 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.items-center {
+  display: flex; /*wrap in flex box so that we can use justify-conent*/
+  justify-content: center; /*center items*/
+  margin-top: 30px; /*add some margin that the top*/
+}
+
 .App {
   text-align: center;
 }
