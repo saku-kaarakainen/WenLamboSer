@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import Web3 from 'web3';
 import { Button } from '@material-ui/core';
 
-export default function isDesiredNetwork() {
+export default function IsDesiredNetworkComponent() {
     const [image, setImage] = useState<string>('')
     const [clicked, setClicked] = useState<boolean>(true)
     const [description, setDescription] = useState<string>('')

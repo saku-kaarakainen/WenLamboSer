@@ -1,172 +1,76 @@
-// Modified from:
-// https://github.com/MetaMask/React-MetaMask-Login-Button/blob/master/src/index.js
-import { Button } from "@material-ui/core";
-import React, { Component, useEffect, useState } from "react";
-import { Fragment } from "react";
-import Web3 from "web3";
-import isDesiredNetwork from "./isDesiredNetwork";
-import { browserName, isMobile } from 'react-device-detect';
+import React, { useEffect, useState } from "react";
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+import Button from '@mui/material/Button';
 
-var path = window.location.href;
+async function connect(onConnected: (address: string) => void) {
+    if (!window.ethereum) {
+        alert("Get MetaMask!");
+        return;
+    } 
 
-function LoginButton() {
-    const [show, setShow] = useState(false);
-    const [install, setInstall] = useState(false);
-    const [isMetaMask, setIsMetaMask] = useState(false);
-    const [isLoginMetaMask, setIsLoginMetaMask] = useState(false);
-    const [isDesiredNetwork, setIsDesiredNetwork] = useState(false);
-    const [isLogin, setIsLogin] = useState(false);
-    
-    //this.handleShow = this.handleShow.bind(this);
-    //this.handleClose = this.handleClose.bind(this);
-    //this.network = this.network.bind(this);
-    //this.mount = this.mount.bind(this);
-    //this.init = this.init.bind(this);
+    window.ethereum.enable()
+        .then((accounts: any) => {
+            console.log("connect accounts:")
+            console.log(accounts)
+        })
+
+    const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+    });
+
+    console.log("connect - accounts:")
+    console.log(accounts)
+
+    // TODO: Use all address?
+    const firstAccount = accounts[0]
+
+    onConnected(firstAccount)
+}
+
+async function checkIfWalletIsConnected(onConnected: (address: string) => void) {
+    if (window.ethereum) {
+        const accounts = await window.ethereum.request({
+            method: "eth_accounts",
+        });
+
+        if (accounts.length > 0) {
+            // TODO: Use all address?
+            const account = accounts[0];
+            onConnected(account);
+            return;
+        }
+
+        if (isMobile) {
+            await connect(onConnected);
+        }
+    }
+}
+
+function onAddressChanged(address: string) {
+    window.ethereum.on("chainChanged", (accounts: any) => {
+        console.log("chainChanged, accounts:")
+        console.log(accounts)        
+    })
+}
+
+export default function LoginButton() {
+    const [userAddress, setUserAddress] = useState("");
 
     useEffect(() => {
-        // componentwillmount 
-        if (typeof Web3 !== "undefined") {
-            setInstall(false);
-            window.ethereum.on("networkChanged", (accounts: any) => {
-                if (accounts === "3") {
-                    setIsLogin(true)
-                    setIsDesiredNetwork(true)
-                    setIsMetaMask(true)
-                    setIsLoginMetaMask(true)
-                } else {
-                    setIsLogin(false)
-                    setIsDesiredNetwork(false)
-                    setIsMetaMask(false)
-                    setIsLoginMetaMask(false)
-                }
-            });
-        } else {
-            setInstall(true)
-        }
-    
-        // mount
-        if (typeof Web3 !== "undefined") {
-            setIsMetaMask(false)
-            init();
-        } else {
-            if (!isMobile) {
-                window.open("http://fwd.metamask.io/" + "?" + path);
+        checkIfWalletIsConnected(setUserAddress);
+    }, []);
 
-                switch (browserName.toLowerCase()) {
-                    case "firefox":
-                        window.open(
-                            "https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/",
-                            "_blank"
-                        );
+    useEffect(() => {
+        onAddressChanged(userAddress);
+    }, [userAddress]);
 
-                        break;
-
-                    case "chrome":
-                        window.open(
-                            "https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en",
-                            "_blank"
-                        );
-                        break;
-
-                    case "opera":
-                        window.open(
-                            "https://addons.opera.com/en/extensions/details/metamask/",
-                            "_blank"
-                        );
-
-                        break;
-                }
-            }
-
-            setIsMetaMask(true)
-        }
-    })
-
-    async function init() {
-        try {
-            const accounts = await window.ethereum.enable();
-            setIsDesiredNetwork(true)
-            setIsMetaMask(false)
-            network();
-        } catch (error) {
-            setIsMetaMask(false)
-            setIsLoginMetaMask(false)
-        }
-        window.ethereum.on("accountsChanged", (accounts: any) => {
-            if (accounts.length === 1) {
-                setIsLogin(false)
-                setIsDesiredNetwork(false)
-                setIsMetaMask(false)
-                setIsLoginMetaMask(true)
-            } else {
-                setIsLogin(true)
-                setIsDesiredNetwork(false)
-                setIsMetaMask(false)
-                setIsLoginMetaMask(false)
-            }
-        });
-    }
-
-    function network() {
-        // If a web3 instance is already provided by Meta Mask.
-        if (window.ethereum.networkVersion === "3") {
-            setIsLogin(true)
-        } else {
-            window.ethereum.on("networkChanged", (accounts: any) => {
-                if (accounts === "3") {
-                    setIsLogin(true)
-                    setIsDesiredNetwork(false)
-                    setIsMetaMask(false)
-                    setIsLoginMetaMask(false)
-                } else {
-                    setIsLogin(false)
-                    setIsDesiredNetwork(true)
-                    setIsMetaMask(false)
-                    setIsLoginMetaMask(false)
-                }
-            });
-        }
-    }
-
-    function handleClose() {
-        window.location.reload();
-        setShow(false);
-    }
-
-    let content;
-    if (isMetaMask) {
-        content = (
-            <div>
-                <p>Install MetaMask to Sign in</p>
-            </div >
-        )
-    } else if (isLoginMetaMask) {
-        content = (
-            <div>
-                <p>Login into MetaMask
-                    <br />
-                </p>
-            </div>
-        )
-    } else if (isDesiredNetwork) {
-        content = isDesiredNetwork
-    } else if (isLogin) {
-        content = (
-            <div>
-                <p>Signed in with MetaMask
-                    <br />
-                </p>
-            </div>)
-    } else if (isMobile) {
-        content = <Fragment>Mobile coming soon!</Fragment>;
-    }
-
-    return (
-        <div>
-            <Button onClick={() => setShow(true)}>
-                {install ? "Install MetaMask" : "Connect with MetaMask"}
-            </Button>
-            {content}
-        </div>
-    ); 
+    return userAddress
+        ? (<div>
+            Connected with <span>
+                {userAddress.substring(0, 5)}…{userAddress.substring(userAddress.length - 4)}
+            </span>
+        </div>)
+        : (<Button variant="contained" onClick={() => connect(setUserAddress)}>
+            Connect metamask
+        </Button>)
 }
