@@ -2,7 +2,7 @@
   "name": "wenlambosergithubpages",
   "version": "0.0.1",
   "homepage": "https://saku-kaarakainen.github.io/WenLamboSerGitHubPages/",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
