@@ -12,6 +12,14 @@ import { Asset } from './Asset';
 import { AddAsset } from './AddAsset';
 import { addAsset, removeAsset } from './../store/actionCreators';
 
+const AssetsTitle = ({ assetsLength }: { assetsLength: number }) => {
+    if (assetsLength <= 0) {
+        return (<></>);
+    }
+
+    return (<h2>My Assets</h2>)   
+}
+
 const AssetList: React.FC = () => {
     const assets: readonly IAsset[] = useSelector(
         (state: AssetState) => state.assets,
@@ -26,7 +34,7 @@ const AssetList: React.FC = () => {
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
-            <h2>My Assets</h2>
+            <AssetsTitle assetsLength={assets.length} />
             {/*<AddAsset saveAsset={saveAsset} />*/}
             <List dense={false}>              
                 {/*<Asset key={asset.id} asset={asset} removeAsset={removeAsset} />*/}
