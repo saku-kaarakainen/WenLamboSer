@@ -10,7 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 
 import NavBar from './components/NavBar'
-import CourseList from './components/CourseList'
+import CourseList from './components/AssetList'
 import './App.css';
 import reducer from './store/reducer'
 

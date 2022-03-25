@@ -9,7 +9,7 @@ export function addAsset(asset: IAsset) {
     return simulateHttpRequest(action);
 }
 
-export function removeArticle(asset: IAsset) {
+export function removeAsset(asset: IAsset) {
     const action: AssetAction = {
         type: actionTypes.REMOVE_ASSET,
         asset
