@@ -13,6 +13,7 @@ async function connect(onConnected: (address: string) => void) {
         .then((accounts: any) => {
             console.log("connect accounts:")
             console.log(accounts)
+            // TODO: Now we are logged in - fetch assets
         })
 
     const accounts = await window.ethereum.request({
