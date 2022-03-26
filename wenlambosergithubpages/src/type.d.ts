@@ -1,4 +1,16 @@
-interface IAsset {
+
+//
+// Connection
+//
+interface IConnection {
+
+}
+
+interface IToken {
+
+}
+
+interface IAsset { // TODO: Remove
     id: number;
     symbol: string;
     name: string;
@@ -6,13 +18,14 @@ interface IAsset {
     amount: number;
 }
 
-type AssetState = {
-    assets: IAsset[];
-};
+type ConnectionState = { connection: IConnection[]; };
+type TokenState = { tokens: IToken[]; };
+type AssetState = { assets: IAsset[]; }; // TODO: Remove
 
-type AssetAction = {
-    type: string; // the type of the asset (maybe this could be tag: string[])
-    asset: IAsset;
-};
+type ConnectionAction = { type: string, connection: IConnection; };
+type TokenAction = { type: string, token: IToken; };
+type AssetAction = { type: string, type, asset: IAsset; };
 
+type DispatchType = (args: ConnectionAction) => ConnectionAction;
+type DispatchType = (args: TokenAction) => TokenAction;
 type DispatchType = (args: AssetAction) => AssetAction;

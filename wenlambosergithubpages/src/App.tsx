@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 
-import { createStore, applyMiddleware, Store } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider as ReduxProvider } from 'react-redux'
-import thunk from 'redux-thunk'
 
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -12,7 +11,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import NavBar from './components/NavBar'
 import CourseList from './components/AssetList'
 import './App.css';
-import reducer from './store/reducer'
+import { store } from './app/store'
 
 export default function App() {
     // TODO: Theme Toggle - theme
@@ -23,10 +22,6 @@ export default function App() {
         },
 
     }), [prefersDarkMode]);
-
-    const store: Store<AssetState, AssetAction> & {
-        dispatch: DispatchType;
-    } = createStore(reducer, applyMiddleware(thunk));
 
     return (
         <React.StrictMode>
