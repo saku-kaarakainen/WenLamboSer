@@ -1,16 +1,7 @@
 import { createSlice, createAction, PayloadAction } from '@reduxjs/toolkit'
-import { createStore, combineReducers } from 'redux'
+import { IAsset } from './IAsset'
 
-const addBy = createAction<number>('addBy')
-const removeBy = createAction<number>('removeBy')
-
-interface IAsset {
-    id: number;
-    symbol: string;
-    name: string;
-    address: string;
-    amount: number;
-}
+// IAsset located at index.ts
 
 // https://redux-toolkit.js.org/api/createslice
 // You can replace this in intialState:
@@ -45,17 +36,3 @@ export const assetSlice = createSlice({
 
 export const { addAsset, removeAsset } = assetSlice.actions
 export default assetSlice.reducer
-
-const reducer = combineReducers({
-    asset: assetSlice.reducer,
-    //user: user.reducer,
-})
-
-const store = createStore(reducer)
-assetSlice.actions.addAsset({
-    id: 1,
-    symbol: 'btc',
-    name: 'Bitcoin',
-    address: '0x123',
-    amount: 1.25
-})

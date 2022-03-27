@@ -1,12 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import { Provider as ReduxProvider } from 'react-redux'
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { store } from './app/store'
+import { registerEvents } from './events'
+
+// register event handlers
+console.log("register events")
+registerEvents();
 
 ReactDOM.render(
-    <App />,
+    <React.StrictMode>
+        <ReduxProvider store={store}>
+            <App />
+        </ReduxProvider>
+    </React.StrictMode>,
     document.getElementById('root')
 );
 

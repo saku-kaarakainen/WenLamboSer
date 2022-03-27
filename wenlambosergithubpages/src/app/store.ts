@@ -1,9 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { assetSlice } from './assetSlice'
+import { configurationSlice } from '../features/configuration/configurationSlice'
+import { connectionSlice } from '../features/connection/connectionSlice'
+import { tokenSlice } from '../features/token/tokenSlice'
+import { assetSlice } from '../features/asset/assetSlice'
 
 const rootReducer = combineReducers({
-    //connections: connectionsReducer,
-    //tokens: tokensReducer,
+    configurations: configurationSlice.reducer,
+    connections: connectionSlice.reducer,
+    tokens: tokenSlice.reducer,
     assets: assetSlice.reducer
 })
 

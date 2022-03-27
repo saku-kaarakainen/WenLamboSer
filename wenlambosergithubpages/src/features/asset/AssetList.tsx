@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dispatch } from 'redux';
-import { ReactReduxContext, useSelector } from 'react-redux'
+import { ReactReduxContext, useSelector, useDispatch } from 'react-redux'
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -8,6 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField' // TODO: Use TextField, or not
 
+import { IAsset } from './IAsset'
 import { Asset } from './Asset';
 import { AddAsset } from './AddAsset';
 
@@ -21,6 +22,7 @@ const AssetsTitle = ({ assetsLength }: { assetsLength: number }) => {
 
 const AssetList: React.FC = () => {
     const assets = useSelector((state: any) => state.assets.assets) as IAsset[]
+    const dispatch = useDispatch()
 
     return (
         <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -30,7 +32,7 @@ const AssetList: React.FC = () => {
                 {/*<Asset key={asset.id} asset={asset} removeAsset={removeAsset} />*/}
                 {/*<ListItemIcon><FolderIcon /> </ListItemIcon>*/}
                 {assets.map((asset: IAsset) => (
-                <ListItem>
+                    <ListItem key={asset.id}>
                     <ListItemText
                             primary = {`${asset.name} (${asset.symbol}): ${asset.amount}`}
                             secondary={asset.address} />
