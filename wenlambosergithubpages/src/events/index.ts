@@ -36,7 +36,17 @@ export const registerEvents = () => {
             store.dispatch(connectionSlice.actions.metamaskConnectionDisconnect())
         } else {
             // account switch
+            // TODO: Use all address?
             store.dispatch(connectionSlice.actions.metamaskConnectionSetAddress(newAddresses[0]))
         }
     })
+
+    window.ethereum.on('disconnect', (error: any) => {
+        store.dispatch(connectionSlice.actions.metamaskConnectionDisconnect())
+    })
+
+    window.ethereum.on('message', (message: any/*ProviderMessage*/) => {
+        console.log("window.eteheum on 'message' event occurred with 'message':")
+        console.log(message)
+    });
 }

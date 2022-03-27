@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { connectionSlice, IConnection } from "../connection/connectionSlice";
 import { Dispatch } from "redux";
 import { AppDispatch } from "../../app/store";
+import { web3 } from "../../web3";
 
 async function connect(metamaskConnection: IConnection, dispatch: AppDispatch) {
     try {
@@ -29,11 +30,20 @@ async function connect(metamaskConnection: IConnection, dispatch: AppDispatch) {
         console.log(accounts)
 
         // TODO: Use all address?
+        // set to connected: true
         const firstAccount = accounts[0]
         dispatch(connectionSlice.actions.metamaskConnectionConnect({
             chainId: window.ethereum.networkVersion,
             address: firstAccount
         }))
+
+        // TODO: this should be inside of connect - store action
+        // get the eth balance
+        web3.eth.getBalance(firstAccount, function (error, balance) {
+            console.log("balance is: ")
+            console.log(balance)
+
+        })
 
     } catch (e) {
         console.log('an exception occurred on LoginButton/connect:')
