@@ -1,4 +1,4 @@
-import { Store } from "@reduxjs/toolkit"
+import { Store } from '@reduxjs/toolkit'
 import { connectionSlice } from './../features/connection/connectionSlice'
 import { store } from './../app/store'
 
@@ -24,7 +24,19 @@ export const registerEvents = () => {
     }
 
     // save current chain into the store if the chain changes
-    window.ethereum.on("chainChanged", (newChainId: number) => {
+    window.ethereum.on('chainChanged', (newChainId: number) => {
         store.dispatch(connectionSlice.actions.metamaskConnectionSetChainId(newChainId))
     })    
+
+    window.ethereum.on('accountsChanged', (newAddresses: string[]) => {
+        const isDisconnect = !newAddresses
+
+        if (isDisconnect) {
+            // disconnect
+            store.dispatch(connectionSlice.actions.metamaskConnectionDisconnect())
+        } else {
+            // account switch
+            store.dispatch(connectionSlice.actions.metamaskConnectionSetAddress(newAddresses[0]))
+        }
+    })
 }

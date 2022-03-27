@@ -40,6 +40,10 @@ export const connectionSlice = createSlice({
             state.metamaskConnection.chainId = action.payload
         },
 
+        metamaskConnectionSetAddress: (state, action: PayloadAction<string>) => {
+            state.metamaskConnection.address = action.payload
+        },
+
         metamaskConnectionConnect: (state, action: PayloadAction<{ chainId:number|null, address:string }>) => {
             state.metamaskConnection.connected = true
             state.metamaskConnection.chainId = action.payload.chainId
