@@ -30,7 +30,10 @@ async function connect(metamaskConnection: IConnection, dispatch: AppDispatch) {
 
         // TODO: Use all address?
         const firstAccount = accounts[0]
-        dispatch(connectionSlice.actions.metamaskConnectionConnect(firstAccount))
+        dispatch(connectionSlice.actions.metamaskConnectionConnect({
+            chainId: window.ethereum.networkVersion,
+            address: firstAccount
+        }))
 
     } catch (e) {
         console.log('an exception occurred on LoginButton/connect:')

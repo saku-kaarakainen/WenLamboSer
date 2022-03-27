@@ -22,7 +22,7 @@ export const initialState: ConnectionState = {
     metamaskConnection: {
         enabled: false,
         connected: false,
-        chainId: null,
+        chainId: null, // https://chainlist.org/
         networkName: '',
         address: ''
     }
@@ -40,9 +40,16 @@ export const connectionSlice = createSlice({
             state.metamaskConnection.chainId = action.payload
         },
 
-        metamaskConnectionConnect: (state, action: PayloadAction<string>) => {
+        metamaskConnectionConnect: (state, action: PayloadAction<{ chainId:number|null, address:string }>) => {
             state.metamaskConnection.connected = true
-            state.metamaskConnection.address = action.payload
+            state.metamaskConnection.chainId = action.payload.chainId
+            state.metamaskConnection.address = action.payload.address
+        },
+
+        metamaskConnectionDisconnect: (state) => {
+            state.metamaskConnection.connected = false
+            state.metamaskConnection.chainId = null
+            state.metamaskConnection.address = ''
         }
     }
 })
