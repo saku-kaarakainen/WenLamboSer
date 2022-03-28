@@ -49,4 +49,6 @@ export const registerEvents = () => {
         console.log("window.eteheum on 'message' event occurred with 'message':")
         console.log(message)
     });
+	
+	// TODO: Should you remove these event listeners later?
 }

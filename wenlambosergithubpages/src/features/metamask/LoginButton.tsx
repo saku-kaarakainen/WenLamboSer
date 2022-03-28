@@ -7,6 +7,8 @@ import { connectionSlice, IConnection } from "../connection/connectionSlice";
 import { Dispatch } from "redux";
 import { AppDispatch } from "../../app/store";
 import { web3 } from "../../web3";
+import { IAsset } from "../asset/IAsset";
+import { assetSlice } from "../asset/assetSlice";
 
 async function connect(metamaskConnection: IConnection, dispatch: AppDispatch) {
     try {
@@ -21,11 +23,7 @@ async function connect(metamaskConnection: IConnection, dispatch: AppDispatch) {
             return
         }
         
-        let accounts = await window.ethereum.enable();
-        console.log("window.ehtherum.enable returned:")
-        console.log(accounts)
-
-        accounts = await window.ethereum.request({ method: "eth_accounts" });
+        const accounts = await window.ethereum.request({ method: "eth_accounts" });
         console.log("window.ethereum request({method:'eth_accounts'}) returned:")
         console.log(accounts)
 
@@ -39,11 +37,18 @@ async function connect(metamaskConnection: IConnection, dispatch: AppDispatch) {
 
         // TODO: this should be inside of connect - store action
         // get the eth balance
-        web3.eth.getBalance(firstAccount, function (error, balance) {
-            console.log("balance is: ")
-            console.log(balance)
+        //web3.eth.getBalance(firstAccount, function (error, balance) {
+        //    console.log("balance is: ")
+        //    console.log(balance)
 
-        })
+        //})
+
+        // TODO: Remove test data
+        dispatch(assetSlice.actions.addAsset({ id: 1, symbol: 'btc', name: 'Bitcoin', address: '0x123', amount: 1.25 }))
+        dispatch(assetSlice.actions.addAsset({ id: 2, symbol: 'eth', name: 'Ethereum', address: '0x456', amount: 20 }))
+        dispatch(assetSlice.actions.addAsset({ id: 3, symbol: 'avax', name: 'Avalanche', address: '0x789', amount: 5 }))
+        dispatch(assetSlice.actions.addAsset({ id: 4, symbol: 'luna', name: 'Terra Luna', address: '0xabc', amount: 10 }))
+        dispatch(assetSlice.actions.addAsset({ id: 5, symbol: 'sol', name: 'Solana', address: '0xdef', amount: 7.5 }))
 
     } catch (e) {
         console.log('an exception occurred on LoginButton/connect:')
@@ -59,14 +64,16 @@ const connectButtonStyle = {
     boxShadow: 'rgba(0, 0, 0, 0.1) 0px 2px 4px'
 }
 
-export default function LoginButton() {
-    const metamaskConnection = useSelector(
-        (state: any) => state.connections.metamaskConnection) as IConnection
+type Props = {
+    addAsset: (asset: IAsset) => void;
+};
+export default function LoginButton() { 
+    const metamaskConnection = useSelector((state: any) => state.connections.metamaskConnection) as IConnection
     const dispatch: AppDispatch = useDispatch()
 
     if (metamaskConnection.connected) {
         return (<div>
-            Connected with <span>{metamaskConnection.address}</span> (chain id: {metamaskConnection.chainId ?? 'undefined'})
+            <i style={{fontSize:'0.8em'}}>(uses test data)</i> Connected with <span>{metamaskConnection.address}</span> (chain id: {metamaskConnection.chainId ?? 'undefined'}) 
         </div>)
     }
 
