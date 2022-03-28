@@ -3,7 +3,7 @@ import * as Colors from '@material-ui/styles/'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import LoginButton from './Metamask/LoginButton'
+import LoginButton from '../metamask/LoginButton'
 
 const PageTitle = 'Wen Lambo? Ser!?'
 

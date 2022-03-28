@@ -14,6 +14,10 @@
     <Script Remove="src\routes\**" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="src\features\configuration\" />
+    <Folder Include="src\features\token\" />
+    <Folder Include="src\web3\" />
+    <Folder Include="src\web2\" />
     <Folder Include="src\store\" />
   </ItemGroup>
   <!-- This target is copied from the ASP.NET SPA template in order to ensure node_modules are in place. -->
