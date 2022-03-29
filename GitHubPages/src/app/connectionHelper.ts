@@ -46,16 +46,16 @@ export default class connectionHelper {
     }
 
     public static async storeEthFromMetamask(userAccount: string, metamaskConnection: IConnection, dispatch: AppDispatch) {
-        //// get the eth balance
-        //web3.eth.getBalance(userAccount)
-        //    .then(response => {
-        //        console.log("web3.eth.getBalance.then:")
-        //        console.log(response)
-        //    })
-        //    .catch(error => {
-        //        console.log("web3.eth.getBalance.catch:")
-        //        console.log(error)
-        //    })
+        // get the eth balance
+        web3.eth.getBalance(userAccount)
+            .then(response => {
+                console.log("web3.eth.getBalance.then:")
+                console.log(response)
+            })
+            .catch(error => {
+                console.log("web3.eth.getBalance.catch:")
+                console.log(error)
+            })
     }
 
     public static async storeErc20TokensFromMetamask(muserAccount: string, etamaskConnection: IConnection, dispatch: AppDispatch) {
