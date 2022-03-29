@@ -3,7 +3,7 @@ import { isMobile } from 'react-device-detect';
 import Button from '@mui/material/Button';
 import { ReactComponent as Icon } from './Icon.svg'
 import { useDispatch, useSelector } from "react-redux";
-import connectionHelper from "../../app/connectionHelper";
+import { connectToMetamask } from "../../app/connectionHelpers";
 
 // TODO: CSS - use module
 const connectButtonStyle = {
@@ -26,7 +26,7 @@ export default function LoginButton() {
     }
 
     return (
-        <Button variant="contained" onClick={() => connectionHelper.connectToMetamask(metamaskConnection, dispatch)} style={connectButtonStyle} >
+        <Button variant="contained" onClick={async () => await connectToMetamask(metamaskConnection, dispatch)} style={connectButtonStyle} >
             <Icon className='icon' style={{marginRight:'0.5em'}} /> Connect metamask
         </Button>
     )

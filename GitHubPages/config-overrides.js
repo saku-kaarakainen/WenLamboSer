@@ -1,6 +1,6 @@
 // For this:
 // https://github.com/ChainSafe/web3.js/issues/4659
-// https://github.com/ChainSafe/web3.js/Troubleshooting and known issues
+// https://github.com/ChainSafe/web3.js#troubleshooting-and-known-issues
 // also, tried to downgrade react-scripts to 4.0.3. That causes it's own issues
 // And those resolutions is to use the latest version, hence this workaround
 const webpack = require('webpack');
@@ -23,5 +23,6 @@ module.exports = function override(config) {
             Buffer: ['buffer', 'Buffer']
         })
     ])
+    config.ignoreWarnings = [/Failed to parse source map/];
     return config;
 }

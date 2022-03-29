@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
+import { buildPortfolio } from '../assetHelpers'
 
 export const initialState: ConnectionState = {
     metamaskConnection: {
@@ -27,9 +29,14 @@ export const connectionSlice = createSlice({
         },
 
         metamaskConnectionConnect: (state, action: PayloadAction<{ chainId:number|null, address:string }>) => {
+            console.log("metamaskConnectionConnect")
             state.metamaskConnection.connected = true
             state.metamaskConnection.chainId = action.payload.chainId
             state.metamaskConnection.address = action.payload.address
+
+            // TODO: Do this: https://stackoverflow.com/a/41260990
+            // Can i build my portfolio here (aka making asynchronous call)? Let's try
+            buildPortfolio(state.metamaskConnection, useDispatch())
         },
 
         metamaskConnectionDisconnect: (state) => {
