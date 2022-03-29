@@ -8,7 +8,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField' // TODO: Use TextField, or not
 
-import { IAsset } from './IAsset'
 import { Asset } from './Asset';
 import { AddAsset } from './AddAsset';
 

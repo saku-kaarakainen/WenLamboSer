@@ -1,5 +1,4 @@
 import * as React from "react";
-import { IAsset } from './IAsset'
 
 type Props = {
     saveAsset: (asset: IAsset| any) => void;

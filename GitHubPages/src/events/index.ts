@@ -1,5 +1,5 @@
 import { Store } from '@reduxjs/toolkit'
-import { connectionSlice } from './../features/connection/connectionSlice'
+import { connectionSlice } from '../app/slices/connectionSlice'
 import { store } from './../app/store'
 
 
@@ -16,6 +16,7 @@ export const registerEvents = () => {
 
     if (length && length > 0) {
         // metamask exists
+        // TODO: Remove these antipatterns (using store.dispatch)
         store.dispatch(connectionSlice.actions.metamaskConnectionSetEnabled(true))
     } else {
         // no metamask
